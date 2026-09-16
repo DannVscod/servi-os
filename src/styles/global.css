@@ -204,6 +204,23 @@ footer { padding: 75px 0 25px; background: var(--white); color: var(--ink); }
 .footer-grid a:hover { color: var(--petrol); }
 .footer-bottom { margin-top: 52px; padding-top: 21px; border-top: 1px solid var(--line); color: #8b9492; font-size: .7rem; }
 
+.privacy-page { padding-top: 78px; }
+.privacy-hero { padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 7vw, 6rem); background: radial-gradient(circle at 85% 20%, rgba(46, 113, 107, .08), transparent 28%), linear-gradient(180deg, var(--ice), #fbfcfb); }
+.privacy-hero h1 { max-width: 760px; font-size: clamp(2.8rem, 6vw, 5.4rem); }
+.privacy-hero p { max-width: 650px; margin: 1.5rem 0 0; font-size: 1.08rem; }
+.privacy-updated { display: block; margin-top: 1.5rem; color: var(--muted); font-size: .76rem; font-weight: 700; }
+.privacy-content { background: var(--white); }
+.privacy-layout { display: grid; gap: 3rem; align-items: start; }
+.privacy-content article { max-width: 780px; }
+.privacy-content h2 { margin: 2.5rem 0 .8rem; font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
+.privacy-content h2:first-child { margin-top: 0; }
+.privacy-content p { margin: 0 0 1rem; font-size: .92rem; }
+.privacy-content .text-link { display: inline; min-height: 0; margin: 0; text-decoration: underline; text-underline-offset: 3px; }
+.privacy-aside { padding: 25px; border-radius: var(--radius); background: var(--ice); box-shadow: var(--shadow-small); }
+.privacy-aside strong { color: var(--ink); font-size: 1rem; }
+.privacy-aside p { margin: .7rem 0 1.3rem; font-size: .85rem; }
+.privacy-aside .button { width: 100%; }
+
 .floating-actions { position: fixed; z-index: 40; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 9px; }
 .floating-button { position: relative; width: 49px; height: 49px; display: grid; place-items: center; border-radius: 50%; color: var(--white); box-shadow: 0 12px 30px rgba(23, 79, 87, .2); transition: transform .2s ease; }
 .floating-button:hover { transform: translateY(-2px); }
@@ -243,6 +260,8 @@ footer { padding: 75px 0 25px; background: var(--white); color: var(--ink); }
   .faq-grid { grid-template-columns: .82fr 1.18fr; }
   .contact-card { grid-template-columns: 1.2fr .8fr; padding: 56px; }
   .contact-actions { justify-content: flex-end; }
+  .privacy-layout { grid-template-columns: minmax(0, 1fr) 280px; gap: 8rem; }
+  .privacy-aside { position: sticky; top: 110px; }
 }
 
 @media (max-width: 520px) {

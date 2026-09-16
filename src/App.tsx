@@ -1,9 +1,10 @@
 import type { CSSProperties } from 'react'
-import { ArrowRight, CalendarClock, Check, CircleAlert, CircleCheck, ClipboardCheck, Database, ExternalLink, FileSpreadsheet, Gauge, Globe2, Headphones, KeyRound, LayoutDashboard, LifeBuoy, Linkedin, Mail, MessageCircle, Phone, Search, ShieldCheck, Sparkles, Unplug, UserRound, UsersRound } from 'lucide-react'
+import { ArrowRight, CalendarClock, Check, CircleAlert, CircleCheck, ClipboardCheck, Database, ExternalLink, FileSpreadsheet, Gauge, Globe2, Headphones, KeyRound, LayoutDashboard, LifeBuoy, Mail, MessageCircle, Phone, Search, ShieldCheck, Sparkles, Unplug, UserRound, UsersRound } from 'lucide-react'
 import { Header } from './components/Header'
 import { SectionTitle } from './components/SectionTitle'
 import { Faq } from './components/Faq'
 import { FloatingActions } from './components/FloatingActions'
+import { Footer } from './components/Footer'
 import { siteConfig } from './config/site'
 import { developableSolutions, differentials, problemsAndSolutions } from './data/content'
 import { services } from './data/services'
@@ -150,12 +151,7 @@ export default function App() {
         <div className="contact-actions"><a className="button button--white" href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle /> Chamar no WhatsApp</a><a className="button button--ghost" href={`mailto:${siteConfig.email}`}><Mail /> Enviar e-mail</a></div>
       </div></section>
     </main>
-    <footer><div className="container footer-grid">
-      <div><a className="brand brand--footer" href="#inicio"><span>DT</span>{siteConfig.name}</a><p>{siteConfig.slogan}</p></div>
-      <div><strong>Navegação</strong><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a href="#possibilidades">Possibilidades</a><a href="#contato">Contato</a></div>
-      <div><strong>Fale comigo</strong><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><a href={whatsappUrl()} target="_blank" rel="noreferrer">WhatsApp</a></div>
-      <div><strong>Experiência profissional</strong><a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Linkedin /> Conheça minha experiência profissional no LinkedIn. <ExternalLink /></a></div>
-    </div><div className="container footer-bottom">© {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.</div></footer>
+    <Footer />
     <FloatingActions />
   </>
 }
