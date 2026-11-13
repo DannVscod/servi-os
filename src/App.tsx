@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { projects, type Lang, type Project } from './data/projects'
 import { experience } from './data/experience'
 import { portfolioServices } from './data/portfolioServices'
+import { complementarySkills, developmentSkills, type SkillGroup } from './data/skills'
 import { HeroOrbit } from './components/HeroOrbit'
 import { siteConfig } from './config/site'
 import { whatsappUrl } from './utils/whatsapp'
@@ -49,12 +50,12 @@ const copy = {
 }
 
 const ids = ['sobre', 'experiencia', 'projetos', 'especialidades', 'servicos', 'contato']
-const skills = [
-  { pt: 'Desenvolvimento', en: 'Development', items: ['React', 'TypeScript', 'Ruby on Rails', 'Sistemas institucionais'] },
-  { pt: 'Cloud & operações', en: 'Cloud & operations', items: ['Cloudflare Workers', 'D1', 'Infraestrutura', 'Suporte'] },
-  { pt: 'Automação & dados', en: 'Automation & data', items: ['Fluxos de trabalho', 'Relatórios', 'Integrações', 'Dados'] },
-  { pt: 'Segurança', en: 'Security', items: ['Autenticação', 'Permissões', '2FA', 'Auditoria'] },
-]
+function SkillTags({ group, lang }: { group: SkillGroup; lang: Lang }) {
+  return <ul className="skill-tags">{group.items.map(item => {
+    const label = typeof item === 'string' ? item : item[lang]
+    return <li key={label}>{label}</li>
+  })}</ul>
+}
 
 function Reveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const reduced = useReducedMotion()
@@ -129,7 +130,7 @@ export default function App() {
       <section className="section about-section" id="sobre"><div className="shell section-grid"><Reveal><span className="eyebrow">01 / {t.nav[0].toUpperCase()}</span></Reveal><Reveal><h2>{t.about}</h2><div className="about-columns"><p>{t.aboutBody}</p><p>{t.aboutBody2}</p></div></Reveal></div></section>
       <section className="section" id="experiencia"><div className="shell section-grid"><Reveal><span className="eyebrow">02 / {t.nav[1].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.experience}</h2></Reveal><div className="timeline">{experience.map((item, i) => <Reveal className="timeline-item" key={item.title.pt}><span>0{i + 1}</span><div><h3>{item.title[lang]}</h3><p>{item.detail[lang]}</p></div><ArrowUpRight size={19} /></Reveal>)}</div></div></div></section>
       <section className="section work-section" id="projetos"><div className="shell"><Reveal className="work-heading"><span className="eyebrow">03 / {t.nav[2].toUpperCase()}</span><h2>{t.projects}</h2></Reveal><div className="project-group"><h3>{t.personal}</h3><div className="project-grid">{projects.filter(item => item.kind === 'personal').map(item => <ProjectCard key={item.slug} project={item} lang={lang} openProject={openProject} />)}</div></div><div className="project-group professional-group"><h3>{t.professional}</h3><div className="project-grid professional-grid">{projects.filter(item => item.kind === 'professional').map(item => <ProjectCard key={item.slug} project={item} lang={lang} openProject={openProject} />)}</div></div></div></section>
-      <section className="section expertise-section" id="especialidades"><div className="shell section-grid"><Reveal><span className="eyebrow">04 / {t.nav[3].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.expertise}</h2></Reveal><div className="expertise-grid">{skills.map((skill, i) => <Reveal className="expertise-card" key={skill.en}><span className="eyebrow">/ 0{i + 1}</span><h3>{skill[lang]}</h3><div className="tag-list">{skill.items.map(item => <span key={item}>{item}</span>)}</div></Reveal>)}</div></div></div></section>
+      <section className="section expertise-section" id="especialidades"><div className="shell section-grid"><Reveal><span className="eyebrow">04 / {t.nav[3].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.expertise}</h2></Reveal><div className="expertise-groups"><div><span className="eyebrow expertise-group-label">{lang === 'pt' ? 'Desenvolvimento' : 'Development'}</span><div className="expertise-grid expertise-grid--development">{developmentSkills.map((group, i) => <Reveal className="expertise-card" key={group.title.en}><span className="eyebrow">/ 0{i + 1}</span><h3>{group.title[lang]}</h3><SkillTags group={group} lang={lang} /></Reveal>)}</div></div><div><span className="eyebrow expertise-group-label">{lang === 'pt' ? 'Infraestrutura, processos e proteção' : 'Infrastructure, processes and protection'}</span><div className="expertise-grid expertise-grid--complementary">{complementarySkills.map((group, i) => <Reveal className="expertise-card" key={group.title.en}><span className="eyebrow">/ 0{i + 4}</span><h3>{group.title[lang]}</h3><SkillTags group={group} lang={lang} /></Reveal>)}</div></div></div></div></div></section>
       <section className="section services-section" id="servicos"><div className="shell section-grid"><Reveal><span className="eyebrow">05 / {t.nav[4].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.services}</h2></Reveal><div className="services-list">{portfolioServices.map((service, i) => <Reveal className="service-row" key={service.title.en}><span>0{i + 1}</span><div><h3>{service.title[lang]}</h3><p>{service.detail[lang]}</p></div><a href={whatsappUrl(service.title[lang])} target="_blank" rel="noopener noreferrer" aria-label={`${t.quote}: ${service.title[lang]}`}><ArrowUpRight /></a></Reveal>)}</div></div></div></section>
       <section className="contact-section" id="contato"><div className="shell"><Reveal><span className="eyebrow">06 / {t.nav[5].toUpperCase()}</span><h2>{t.contact}</h2><p>{t.contactBody}</p><a className="button contact-button" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{t.quote}<ArrowUpRight /></a></Reveal><div className="contact-links"><a href={`mailto:${siteConfig.email}`}><Mail size={17} /> Email</a><a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={siteConfig.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub</a></div></div></section>
     </>}</main>

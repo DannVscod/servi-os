@@ -51,7 +51,7 @@
 }
 
 .hero-orbit__initials {
-  font: 700 clamp(55px, 5.3vw, 72px)/1 'Space Grotesk', sans-serif;
+  font: 700 clamp(55px, 5.3vw, 72px)/1 'Geist Sans', sans-serif;
   letter-spacing: -.13em;
   padding-right: .13em;
   color: #f0f6ed;

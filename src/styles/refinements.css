@@ -1,0 +1,58 @@
+:root {
+  font-family: 'Geist Sans', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body { line-height: 1.5; }
+h1, h2, h3 { letter-spacing: -.045em; }
+p { line-height: 1.68; }
+.hero h1 { letter-spacing: -.065em; }
+.section h2, .contact-section h2 { text-wrap: balance; }
+.about-columns p, .case-details p { max-width: 62ch; }
+.eyebrow, .hero-topline > span:last-child, .hero-bottom, .status,
+.visual-stamp, .technology-note, .service-row > span,
+.timeline-item > span, .expertise-card > .eyebrow {
+  font-family: 'Geist Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+}
+.wordmark { letter-spacing: .11em; }
+.wordmark strong { letter-spacing: -.09em; }
+
+.expertise-groups { display: grid; gap: 48px; }
+.expertise-group-label { margin-bottom: 15px; color: #b4ed78; }
+.expertise-grid--development,
+.expertise-grid--complementary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.expertise-card { min-width: 0; min-height: 236px; padding: 26px; }
+.expertise-card h3 { margin: 18px 0 24px; font-size: clamp(23px, 2.1vw, 31px); line-height: 1.14; }
+.skill-tags { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; padding: 0; margin: auto 0 0; list-style: none; }
+.skill-tags li {
+  padding: 7px 10px;
+  border: 1px solid #b5c9b350;
+  border-radius: 3px;
+  color: #d7e5d5;
+  background: #ffffff08;
+  font: 500 11px/1.35 'Geist Mono', 'Courier New', monospace;
+  overflow-wrap: anywhere;
+  transition: background-color .22s ease, border-color .22s ease, color .22s ease, transform .22s ease;
+}
+.skill-tags li:hover { transform: translateY(-2px); color: #f2ffe9; background: #b4ed7817; border-color: #b4ed7880; }
+:root[data-theme='light'] .expertise-group-label { color: #315d31; }
+:root[data-theme='light'] .skill-tags li { color: #29482d; background: #ffffff88; border-color: #71947488; }
+:root[data-theme='light'] .skill-tags li:hover { background: #d1edc8; border-color: #477c4a; }
+
+@media (max-width: 1150px) {
+  .expertise-grid--development,
+  .expertise-grid--complementary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .expertise-grid--development,
+  .expertise-grid--complementary { grid-template-columns: 1fr; }
+  .expertise-groups { gap: 40px; }
+  .expertise-card { min-height: 190px; padding: 23px; }
+  .skill-tags li { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-tags li { transition: none; }
+  .skill-tags li:hover { transform: none; }
+}
