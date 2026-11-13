@@ -1,0 +1,116 @@
+.hero-orbit {
+  width: 100%;
+  height: min(34vw, 450px);
+  min-height: 320px;
+  position: relative;
+  isolation: isolate;
+  pointer-events: auto;
+}
+
+.hero-orbit__scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translateZ(0);
+}
+
+.hero-orbit__glow {
+  position: absolute;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #a6e87438 0%, #7bcf5b1c 35%, transparent 70%);
+  filter: blur(22px);
+  will-change: transform, opacity;
+}
+
+.hero-orbit__ring {
+  position: absolute;
+  border: 1px solid #9fd3725b;
+  border-radius: 50%;
+  box-shadow: 0 0 18px #a8e2770a;
+  will-change: transform;
+}
+
+.hero-orbit__ring--one { width: 88%; height: 58%; }
+.hero-orbit__ring--two { width: 58%; height: 88%; border-color: #b4ed783d; }
+.hero-orbit__ring--three { width: 73%; height: 68%; border-color: #b4ed7828; }
+
+.hero-orbit__core {
+  width: clamp(160px, 16vw, 220px);
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #93c97069;
+  background: radial-gradient(circle at 30% 20%, #3b5b36, #17231a 65%);
+  box-shadow: 0 0 75px #97da5625, inset 0 0 55px #b4ed781c;
+  will-change: transform;
+}
+
+.hero-orbit__initials {
+  font: 700 clamp(55px, 5.3vw, 72px)/1 'Space Grotesk', sans-serif;
+  letter-spacing: -.13em;
+  padding-right: .13em;
+  color: #f0f6ed;
+}
+
+.hero-orbit__symbol {
+  position: absolute;
+  top: 17%;
+  right: 17%;
+  color: #b4ed78;
+  font-size: 22px;
+  will-change: transform, opacity;
+}
+
+.hero-orbit__particle {
+  position: absolute;
+  top: 23%;
+  left: 15%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c5f495;
+  box-shadow: 0 0 16px #b4ed78;
+  will-change: transform;
+}
+
+.hero-orbit__label {
+  position: absolute;
+  color: #b4ed78;
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+.hero-orbit__label--one { top: 15%; left: 3%; }
+.hero-orbit__label--two { top: 38%; right: 0; }
+.hero-orbit__label--three { bottom: 10%; left: 22%; }
+
+:root[data-theme='light'] .hero-orbit__ring { border-color: #4b804b88; }
+:root[data-theme='light'] .hero-orbit__ring--three { border-color: #4b804b55; }
+:root[data-theme='light'] .hero-orbit__label { color: #376437; }
+
+@media (max-width: 950px) {
+  .hero-orbit {
+    position: absolute;
+    right: 3vw;
+    top: 190px;
+    width: 260px;
+    opacity: .32;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-orbit { top: 240px; right: -90px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit__glow,
+  .hero-orbit__ring,
+  .hero-orbit__core,
+  .hero-orbit__symbol,
+  .hero-orbit__particle { will-change: auto; }
+}
