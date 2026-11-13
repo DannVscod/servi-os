@@ -1,157 +1,48 @@
-import type { CSSProperties } from 'react'
-import { ArrowRight, CalendarClock, Check, CircleAlert, CircleCheck, ClipboardCheck, Database, ExternalLink, FileSpreadsheet, Gauge, Globe2, Headphones, KeyRound, LayoutDashboard, LifeBuoy, Mail, MessageCircle, Phone, Search, ShieldCheck, Sparkles, Unplug, UserRound, UsersRound } from 'lucide-react'
-import { Header } from './components/Header'
-import { SectionTitle } from './components/SectionTitle'
-import { Faq } from './components/Faq'
-import { FloatingActions } from './components/FloatingActions'
-import { Footer } from './components/Footer'
+import { useEffect, useState } from 'react'
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, Mail, Menu, Moon, Sun, X } from 'lucide-react'
+import { motion, useReducedMotion } from 'motion/react'
+import { projects, type Lang } from './data/projects'
+import { experience } from './data/experience'
+import { portfolioServices } from './data/portfolioServices'
 import { siteConfig } from './config/site'
-import { developableSolutions, differentials, problemsAndSolutions } from './data/content'
-import { services } from './data/services'
-import { whatsappCustomUrl, whatsappUrl } from './utils/whatsapp'
-import { useScrollReveal } from './hooks/useScrollReveal'
+import { whatsappUrl } from './utils/whatsapp'
 
-const steps = [
-  ['01', 'Primeiro contato', 'Você explica sua necessidade pelo WhatsApp.'],
-  ['02', 'Entendimento do problema', 'A situação é analisada para identificar a solução mais adequada.'],
-  ['03', 'Orçamento e execução', 'Após a aprovação, o serviço é desenvolvido ou realizado conforme o combinado.'],
-  ['04', 'Entrega e suporte', 'A solução é entregue com orientações e acompanhamento quando necessário.'],
+const words = {
+  pt: { nav: ['Sobre', 'Experiência', 'Projetos', 'Especialidades', 'Serviços', 'Contato'], kicker: 'ENGENHARIA DE SOFTWARE · SOLUÇÕES DIGITAIS', hero: 'Construindo sistemas', heroAccent: 'que fazem sentido.', intro: 'Sou Danrley, Software Engineer. Desenvolvimento, cloud, automação e segurança conectados a problemas reais de negócio.', work: 'Explorar projetos', together: 'Vamos trabalhar juntos', scroll: 'ROLE PARA EXPLORAR', about: 'Engenharia com contexto. Tecnologia com propósito.', aboutBody: 'Atuo na construção de soluções digitais e na melhoria de processos. Meu trabalho conecta desenvolvimento de software, infraestrutura, automação e cuidado com a segurança da informação.', aboutBody2: 'Também ajudo empresas e profissionais a transformar necessidades em sistemas, websites e operações digitais mais organizadas.', experience: 'Experiência em diferentes frentes.', projects: 'Projetos com problemas reais por trás.', expertise: 'Do código à operação.', services: 'Como posso ajudar sua empresa.', contact: 'Tem um desafio em mente?', contactBody: 'Conte o contexto do seu projeto. Podemos conversar sobre escopo, possibilidades e próximos passos.', quote: 'Solicitar orçamento', back: 'Voltar aos projetos', context: 'Contexto e desafio', outcome: 'Resultado e estado atual', development: 'Em desenvolvimento', privacy: 'Política de privacidade', theme: 'Alternar tema', language: 'Mudar idioma', menu: 'Abrir menu', view: 'Ver projeto', undisclosed: 'Tecnologias não divulgadas' },
+  en: { nav: ['About', 'Experience', 'Work', 'Expertise', 'Services', 'Contact'], kicker: 'SOFTWARE ENGINEERING · DIGITAL SOLUTIONS', hero: 'Building systems', heroAccent: 'that make sense.', intro: "I'm Danrley, a Software Engineer. Development, cloud, automation and security connected to real business problems.", work: 'Explore my work', together: "Let's work together", scroll: 'SCROLL TO EXPLORE', about: 'Engineering with context. Technology with purpose.', aboutBody: 'I build digital solutions and improve processes. My work connects software development, infrastructure, automation and information security.', aboutBody2: 'I also help businesses and professionals turn needs into systems, websites and better organized digital operations.', experience: 'Experience across disciplines.', projects: 'Projects grounded in real problems.', expertise: 'From code to operations.', services: 'How I can help your business.', contact: 'Have a challenge in mind?', contactBody: 'Tell me about your project. We can discuss scope, possibilities and next steps.', quote: 'Request a quote', back: 'Back to work', context: 'Context and challenge', outcome: 'Result and current status', development: 'In development', privacy: 'Privacy policy', theme: 'Toggle theme', language: 'Change language', menu: 'Open menu', view: 'View project', undisclosed: 'Technologies not disclosed' },
+}
+const ids = ['sobre', 'experiencia', 'projetos', 'especialidades', 'servicos', 'contato']
+const skills = [
+  { pt: 'Desenvolvimento', en: 'Development', items: ['React', 'TypeScript', 'Interfaces web', 'Sistemas institucionais'] },
+  { pt: 'Cloud & operações', en: 'Cloud & operations', items: ['Microsoft 365', 'Azure', 'Infraestrutura', 'Suporte'] },
+  { pt: 'Automação & dados', en: 'Automation & data', items: ['Fluxos de trabalho', 'Relatórios', 'Integrações', 'Dados'] },
+  { pt: 'Segurança', en: 'Security', items: ['Controle de acesso', 'Privacidade', 'Backup', 'Boas práticas'] },
 ]
-const stepIcons = [Phone, Search, ClipboardCheck, LifeBuoy]
-const solutionIcons = [Globe2, UsersRound, FileSpreadsheet, LayoutDashboard, Unplug, Gauge]
-const supportItems = ['Correções e pequenos ajustes', 'Atualizações programadas', 'Suporte remoto', 'Manutenção preventiva', 'Backup e acompanhamento', 'Prioridade no atendimento']
-const supportPlansMessage = 'Olá, Danrley! Gostaria de conhecer os planos de suporte e manutenção.'
-const supportQuoteMessage = 'Olá, Danrley! Gostaria de solicitar um orçamento para um plano de suporte.'
-
+function Reveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const reduced = useReducedMotion()
+  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .1 }} transition={{ duration: .65, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>
+}
+function Visual({ variant, name }: { variant: string; name: string }) {
+  return <div className={`visual visual-${variant}`} aria-hidden="true"><div className="visual-grid"/><div className="visual-window"><div className="window-top"><i/><i/><i/><b>{name}</b></div><div className="window-body"><div className="mock-sidebar"><i/><i/><i/><i/></div><div className="mock-main"><div className="mock-heading"/><div className="mock-stats"><i/><i/><i/></div><div className="mock-lines"><i/><i/><i/><i/></div></div></div></div><span className="visual-stamp">{name.toUpperCase()}</span></div>
+}
 export default function App() {
-  useScrollReveal()
-  return <>
-    <Header />
-    <main>
-      <section className="hero" id="inicio">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <span className="eyebrow"><Sparkles size={16} /> Tecnologia sob medida, sem complicação</span>
-            <h1>Tecnologia que resolve problemas e <em>facilita o seu negócio</em></h1>
-            <p>Criação de sites, sistemas personalizados, automação de tarefas, suporte técnico e organização de soluções digitais para empresas e profissionais.</p>
-            <div className="button-row">
-              <a className="button" href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle /> Solicitar orçamento</a>
-              <a className="button button--secondary" href="#servicos">Conhecer soluções <ArrowRight /></a>
-            </div>
-            <div className="hero-trust"><span><Check /> Atendimento direto</span><span><Check /> Soluções personalizadas</span><span><Check /> Suporte contínuo</span></div>
-          </div>
-          <div className="tech-visual" aria-label="Composição abstrata representando serviços e organização">
-            <svg className="hero-art" viewBox="0 0 560 520" role="img" aria-hidden="true">
-              <defs>
-                <linearGradient id="shapeA" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#174f57" /><stop offset="1" stopColor="#2e716b" /></linearGradient>
-                <linearGradient id="shapeB" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#e9efec" /><stop offset="1" stopColor="#f7f4ef" /></linearGradient>
-              </defs>
-              <path d="M112 130C174 51 325 28 427 93c90 57 112 186 58 277-56 94-196 132-297 76C73 383 37 226 112 130Z" fill="url(#shapeB)" />
-              <path d="M221 112c73-23 163 21 188 94 29 83-19 177-105 202-80 24-169-22-194-103-25-82 27-166 111-193Z" fill="url(#shapeA)" />
-              <path d="M172 293c67-87 145-100 233-35" fill="none" stroke="#f0f5f3" strokeWidth="2" strokeDasharray="6 9" />
-              <circle cx="173" cy="293" r="9" fill="#c8673a" />
-              <circle cx="405" cy="258" r="9" fill="#f4f7f5" />
-              <rect x="205" y="176" width="174" height="128" rx="24" fill="#fff" fillOpacity=".14" stroke="#fff" strokeOpacity=".26" />
-              <rect x="232" y="207" width="82" height="10" rx="5" fill="#fff" fillOpacity=".8" />
-              <rect x="232" y="231" width="118" height="7" rx="3.5" fill="#fff" fillOpacity=".32" />
-              <rect x="232" y="254" width="35" height="25" rx="8" fill="#fff" fillOpacity=".82" />
-              <rect x="276" y="254" width="35" height="25" rx="8" fill="#c8673a" fillOpacity=".88" />
-            </svg>
-            <div className="hero-service-pill pill-sites"><Check /> Sites</div>
-            <div className="hero-service-pill pill-systems"><Check /> Sistemas</div>
-            <div className="hero-service-pill pill-automation"><Check /> Automações</div>
-            <div className="hero-service-pill pill-support"><Check /> Suporte</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="servicos" className="section"><div className="container">
-        <SectionTitle eyebrow="O que posso fazer por você" title="Soluções para o seu negócio" description="Soluções práticas para melhorar processos, organizar informações, aumentar a produtividade e resolver necessidades de tecnologia no dia a dia." />
-        <div className="services-grid">{services.map(({ title, description, items, icon: Icon }, index) => <article className="service-card" key={title} data-reveal style={{ '--delay': `${(index % 3) * 70}ms` } as CSSProperties}>
-          <div className="icon-box"><Icon /></div><h3>{title}</h3><p>{description}</p>
-          <ul>{items.map(item => <li key={item}><Check />{item}</li>)}</ul>
-          <a href={whatsappUrl(title)} target="_blank" rel="noreferrer">Solicitar orçamento <ArrowRight /></a>
-        </article>)}</div>
-      </div></section>
-
-      <section id="solucoes" className="section section--tinted"><div className="container">
-        <SectionTitle eyebrow="Problema → solução" title="Como posso ajudar?" description="Identifique o seu cenário e veja o caminho mais direto para resolvê-lo." />
-        <div className="solutions-grid">{problemsAndSolutions.map(({ problem, solution }, index) => <article className="solution-row" key={problem} data-reveal style={{ '--delay': `${(index % 2) * 80}ms` } as CSSProperties}><CircleAlert className="problem-icon" aria-hidden="true" /><span className="problem">{problem}</span><ArrowRight className="connection-arrow" /><strong>{solution}</strong></article>)}</div>
-      </div></section>
-
-      <section className="section security-section" data-reveal><div className="container security-grid">
-        <div>
-          <span className="eyebrow">Cuidado com as informações</span>
-          <h2>Organização e segurança também fazem parte da solução</h2>
-          <p>Muitas empresas perdem informações importantes por falta de organização, controle de acessos ou backups adequados.</p>
-          <p>Meu objetivo é criar soluções que, além de atender às necessidades do negócio, mantenham os dados organizados, protegidos e disponíveis quando forem necessários.</p>
-        </div>
-        <div className="security-points">
-          <article><Database /><span>Informações mais organizadas</span></article>
-          <article><KeyRound /><span>Acessos mais bem controlados</span></article>
-          <article><ShieldCheck /><span>Menos risco de perda de dados</span></article>
-        </div>
-      </div></section>
-
-      <section className="section process"><div className="container">
-        <SectionTitle eyebrow="Como funciona" title="Um processo simples e transparente" />
-        <div className="steps">{steps.map(([number, title, text], index) => { const Icon = stepIcons[index]; return <article key={number} data-reveal style={{ '--delay': `${index * 90}ms` } as CSSProperties}><span>{number}</span><div className="step-icon"><Icon /></div><h3>{title}</h3><p>{text}</p></article> })}</div>
-      </div></section>
-
-      <section className="section ongoing-support" data-reveal><div className="container support-layout">
-        <div className="support-copy">
-          <span className="eyebrow"><CalendarClock /> Suporte e Manutenção Contínua</span>
-          <h2>Suporte e manutenção para acompanhar o crescimento do seu negócio</h2>
-          <p>Após a entrega do projeto, você pode contratar um plano de suporte para manter seu site, sistema ou ambiente de TI atualizado, organizado e funcionando corretamente.</p>
-          <span className="support-list-title">Os planos podem incluir:</span>
-          <ul>{supportItems.map((item) => <li key={item}><Check />{item}</li>)}</ul>
-        </div>
-        <aside className="support-panel" aria-label="Informações sobre os planos de suporte">
-          <div className="support-panel-icon"><Headphones /></div>
-          <div className="support-notice"><strong>Importante:</strong> O suporte contínuo é um serviço opcional contratado à parte. O período de garantia cobre apenas correções relacionadas ao projeto entregue. Novas funcionalidades, alterações de escopo ou serviços adicionais são avaliados e orçados separadamente.</div>
-          <div className="support-actions">
-            <a className="button" href={whatsappCustomUrl(supportPlansMessage)} target="_blank" rel="noreferrer"><MessageCircle /> Conhecer os planos</a>
-            <a className="button button--secondary" href={whatsappCustomUrl(supportQuoteMessage)} target="_blank" rel="noreferrer"><ArrowRight /> Solicitar orçamento</a>
-          </div>
-        </aside>
-      </div></section>
-
-      <section id="sobre" className="section section--dark"><div className="container about-grid">
-        <div className="avatar-wrap"><div className="avatar"><UserRound /></div><div className="avatar-note"><span>Soluções em tecnologia</span><strong>Atendimento próximo e profissional</strong></div></div>
-        <div><span className="eyebrow eyebrow--light">Sobre</span><h2>Transformo necessidades em soluções tecnológicas</h2>
-          <p>Tenho experiência na criação de soluções em tecnologia para empresas e profissionais, ajudando a automatizar processos, desenvolver sistemas, criar sites e melhorar a infraestrutura de TI.</p>
-          <p>Cada projeto é desenvolvido com foco em entender a necessidade do cliente e entregar uma solução prática, confiável e fácil de utilizar.</p>
-          <p>Também realizo serviços de suporte técnico, manutenção, formatação, limpeza e melhoria de computadores para empresas e profissionais.</p>
-          <p>Além disso, aplico boas práticas de segurança, privacidade e organização de dados em todos os projetos, buscando oferecer soluções preparadas para acompanhar o crescimento do negócio.</p>
-          <a className="text-link light linkedin-about" href={siteConfig.linkedin} target="_blank" rel="noreferrer">Conheça minha experiência profissional no LinkedIn <ExternalLink /></a>
-        </div>
-      </div></section>
-
-      <section id="possibilidades" className="section section--tinted"><div className="container">
-        <SectionTitle eyebrow="Possibilidades" title="Soluções que posso desenvolver" description="Exemplos de soluções que podem ser adaptadas à necessidade e à rotina de cada cliente." />
-        <div className="projects-grid">{developableSolutions.map((solution, index) => { const Icon = solutionIcons[index]; return <article className="project-card" key={solution.title} data-reveal style={{ '--delay': `${(index % 3) * 70}ms` } as CSSProperties}>
-          <div className={`project-preview preview-${index % 3 + 1}`}><div><span /><span /><span /></div></div>
-          <div className="project-category"><Icon /> Solução disponível</div><h3>{solution.title}</h3><p>{solution.description}</p>
-          <a href={whatsappUrl(solution.title)} target="_blank" rel="noreferrer">Solicitar orçamento <ArrowRight /></a>
-        </article> })}</div>
-      </div></section>
-
-      <section className="section"><div className="container">
-        <SectionTitle eyebrow="Por que escolher?" title="Parceria do primeiro contato à entrega" />
-        <div className="differentials">{differentials.map(({ title, description }, index) => <article key={title} data-reveal style={{ '--delay': `${(index % 3) * 70}ms` } as CSSProperties}><CircleCheck /><div><strong>{title}</strong><p>{description}</p></div></article>)}</div>
-      </div></section>
-
-      <section className="section section--tinted"><div className="container faq-grid">
-        <SectionTitle eyebrow="Perguntas frequentes" title="Antes de começarmos" description="Respostas rápidas sobre atendimento, orçamento e suporte." />
-        <Faq />
-      </div></section>
-
-      <section id="contato" className="section contact-section"><div className="container contact-card">
-        <div><span className="eyebrow eyebrow--light">Contato</span><h2>Vamos conversar sobre sua necessidade?</h2><p>Entre em contato e explique brevemente o que você precisa. A partir disso, será possível avaliar a melhor solução e preparar um orçamento.</p></div>
-        <div className="contact-actions"><a className="button button--white" href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle /> Chamar no WhatsApp</a><a className="button button--ghost" href={`mailto:${siteConfig.email}`}><Mail /> Enviar e-mail</a></div>
-      </div></section>
-    </main>
-    <Footer />
-    <FloatingActions />
-  </>
+  const [lang, setLang] = useState<Lang>(() => localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'pt')
+  const [theme, setTheme] = useState(() => localStorage.getItem('portfolio-theme') === 'light' ? 'light' : 'dark')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [slug, setSlug] = useState(() => new URLSearchParams(location.search).get('project'))
+  const t = words[lang]
+  const project = projects.find(p => p.slug === slug)
+  useEffect(() => { document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en'; localStorage.setItem('portfolio-language', lang) }, [lang])
+  useEffect(() => { document.documentElement.dataset.theme = theme; localStorage.setItem('portfolio-theme', theme); document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#101410' : '#f5f6ef') }, [theme])
+  useEffect(() => { const pop = () => setSlug(new URLSearchParams(location.search).get('project')); window.addEventListener('popstate', pop); return () => window.removeEventListener('popstate', pop) }, [])
+  useEffect(() => {
+    const title = project ? `${project.name} | Danrley Sousa` : 'Danrley Sousa | Software Engineer & Soluções Digitais'
+    const description = project ? project.summary[lang] : t.intro
+    const canonical = `${location.origin}${import.meta.env.BASE_URL}${project ? `?project=${project.slug}` : ''}`
+    document.title = title
+    for (const [selector, value] of [['link[rel="canonical"]', canonical], ['meta[property="og:url"]', canonical], ['meta[property="og:title"]', title], ['meta[property="og:description"]', description], ['meta[name="description"]', description]]) document.querySelector(selector)?.setAttribute(selector.startsWith('link') ? 'href' : 'content', value)
+  }, [project, lang, t.intro])
+  const openProject = (next: string) => { history.pushState({}, '', `?project=${next}`); setSlug(next); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+  const closeProject = () => { history.pushState({}, '', `${import.meta.env.BASE_URL}#projetos`); setSlug(null); requestAnimationFrame(() => document.getElementById('projetos')?.scrollIntoView()) }
+  return <><a className="skip-link" href="#main">{lang === 'pt' ? 'Ir para o conteúdo' : 'Skip to content'}</a><header className="site-header"><div className="shell header-inner"><a className="wordmark" href={import.meta.env.BASE_URL} aria-label="Danrley Sousa"><strong>d<span>.</span></strong><span>DANRLEY<br/>SOUSA</span></a><nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label={lang === 'pt' ? 'Navegação principal' : 'Main navigation'}>{ids.map((id, i) => <a key={id} href={`${project ? import.meta.env.BASE_URL : ''}#${id}`} onClick={() => { setMenuOpen(false); if (project) setSlug(null) }}>{t.nav[i]}</a>)}</nav><div className="header-actions"><button className="icon-button language-button" onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')} aria-label={t.language}>{lang.toUpperCase()}</button><button className="icon-button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} aria-label={t.theme}>{theme === 'dark' ? <Sun size={18}/> : <Moon size={18}/>}</button><button className="icon-button mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label={t.menu} aria-expanded={menuOpen}>{menuOpen ? <X/> : <Menu/>}</button></div></div></header><main id="main">{project ? <div className="case-page shell"><button className="back-link" onClick={closeProject}><ArrowLeft size={18}/>{t.back}</button><div className="case-heading"><span className="eyebrow">{project.category[lang]}</span><h1>{project.name}<span className="accent">.</span></h1><p>{project.summary[lang]}</p>{project.status && <span className="status">{t.development}</span>}</div><Visual variant={project.visual} name={project.name}/><div className="case-details"><div><span className="eyebrow">01 / {t.context}</span><p>{project.challenge[lang]}</p></div><div><span className="eyebrow">02 / {t.outcome}</span><p>{project.result[lang]}</p></div></div>{project.metrics && <div className="metric-row">{project.metrics.map(m => <span key={m}>{m}</span>)}</div>}<p className="technology-note">{t.undisclosed}</p><a className="button primary" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{t.together}<ArrowUpRight size={18}/></a></div> : <><section className="hero shell" id="inicio"><div className="hero-topline"><span className="eyebrow"><span className="live-dot"/>{t.kicker}</span><span>PORTFÓLIO / 2026</span></div><div className="hero-content"><div><h1>{t.hero}<br/><em>{t.heroAccent}</em></h1><p>{t.intro}</p><div className="button-row"><a className="button primary" href="#projetos">{t.work}<ArrowUpRight size={18}/></a><a className="button text-button" href="#contato">{t.together}<ArrowRight size={18}/></a></div></div><div className="hero-orbit" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="orbit-core">DS<span>✳</span></div><span className="orbit-label label-one">SOFTWARE</span><span className="orbit-label label-two">SYSTEMS</span><span className="orbit-label label-three">SOLUTIONS</span></div></div><div className="hero-bottom"><span>{t.scroll}</span><ArrowDownRight size={23}/></div></section><section className="section about-section" id="sobre"><div className="shell section-grid"><Reveal><span className="eyebrow">01 / {t.nav[0].toUpperCase()}</span></Reveal><Reveal><h2>{t.about}</h2><div className="about-columns"><p>{t.aboutBody}</p><p>{t.aboutBody2}</p></div></Reveal></div></section><section className="section" id="experiencia"><div className="shell section-grid"><Reveal><span className="eyebrow">02 / {t.nav[1].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.experience}</h2></Reveal><div className="timeline">{experience.map((e, i) => <Reveal className="timeline-item" key={e.title.pt}><span>0{i+1}</span><div><h3>{e.title[lang]}</h3><p>{e.detail[lang]}</p></div><ArrowUpRight size={19}/></Reveal>)}</div></div></div></section><section className="section work-section" id="projetos"><div className="shell"><Reveal className="work-heading"><span className="eyebrow">03 / {t.nav[2].toUpperCase()}</span><h2>{t.projects}</h2></Reveal><div className="project-grid">{projects.map((p, i) => <Reveal className={`project-card ${i === 0 ? 'featured' : ''}`} key={p.slug}><a href={`?project=${p.slug}`} onClick={e => { e.preventDefault(); openProject(p.slug) }} aria-label={`${t.view}: ${p.name}`}><Visual variant={p.visual} name={p.name}/><div className="project-meta"><div><span className="eyebrow">{p.category[lang]}</span><h3>{p.name}</h3><p>{p.summary[lang]}</p>{p.status && <span className="status">{t.development}</span>}</div><span className="project-arrow"><ArrowUpRight size={23}/></span></div></a></Reveal>)}</div></div></section><section className="section expertise-section" id="especialidades"><div className="shell section-grid"><Reveal><span className="eyebrow">04 / {t.nav[3].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.expertise}</h2></Reveal><div className="expertise-grid">{skills.map((s, i) => <Reveal className="expertise-card" key={s.en}><span className="eyebrow">/ 0{i+1}</span><h3>{s[lang]}</h3><div className="tag-list">{s.items.map(item => <span key={item}>{item}</span>)}</div></Reveal>)}</div></div></div></section><section className="section services-section" id="servicos"><div className="shell section-grid"><Reveal><span className="eyebrow">05 / {t.nav[4].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.services}</h2></Reveal><div className="services-list">{portfolioServices.map((s, i) => <Reveal className="service-row" key={s.title.en}><span>0{i+1}</span><div><h3>{s.title[lang]}</h3><p>{s.detail[lang]}</p></div><a href={whatsappUrl(s.title[lang])} target="_blank" rel="noopener noreferrer" aria-label={`${t.quote}: ${s.title[lang]}`}><ArrowUpRight/></a></Reveal>)}</div></div></div></section><section className="contact-section" id="contato"><div className="shell"><Reveal><span className="eyebrow">06 / {t.nav[5].toUpperCase()}</span><h2>{t.contact}</h2><p>{t.contactBody}</p><a className="button contact-button" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{t.quote}<ArrowUpRight/></a></Reveal><div className="contact-links"><a href={`mailto:${siteConfig.email}`}><Mail size={17}/> Email</a><a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17}/> LinkedIn</a><a href={siteConfig.github} target="_blank" rel="noopener noreferrer"><Github size={17}/> GitHub</a></div></div></section></>}</main><footer className="site-footer"><div className="shell footer-inner"><span>© {new Date().getFullYear()} Danrley Sousa</span><span>Software Engineer / Brasil</span><a href={`${import.meta.env.BASE_URL}privacidade.html`}>{t.privacy}</a></div></footer></>
 }

@@ -29,8 +29,6 @@ jobs:
         with:
           enablement: true
           cache: pnpm
-      - name: Configurar Pages
-        uses: actions/configure-pages@v5
       - name: Instalar dependências
         run: pnpm install --frozen-lockfile
       - name: Verificar TypeScript

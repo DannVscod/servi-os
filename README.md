@@ -1,52 +1,34 @@
-# Danrley Tecnologia
+# Portfólio de Danrley Sousa
 
-Site institucional para apresentar serviços de desenvolvimento, automação, infraestrutura e suporte técnico, com chamadas diretas para orçamento pelo WhatsApp.
+Portfólio bilíngue em React, Vite e TypeScript. Apresenta experiência, projetos e serviços, com contato por WhatsApp e página de privacidade.
 
-## Tecnologias
-
-React 19, Vite, TypeScript em modo strict, CSS puro, Lucide React, Node.js 24 e pnpm.
-
-## Executar localmente
-
-Requisitos: Node.js 24 e pnpm.
+## Desenvolvimento
 
 ```bash
-corepack enable
 pnpm install
 pnpm dev
 ```
 
-O Vite informará o endereço local no terminal.
+## Conteúdo
 
-## Personalizar dados e conteúdo
+- `src/data/projects.ts`: cases, estado de desenvolvimento e métricas informadas.
+- `src/data/experience.ts`: trajetória profissional sem datas ou empregadores não verificados.
+- `src/data/portfolioServices.ts`: serviços.
+- `src/config/site.ts`: WhatsApp, e-mail e perfis públicos.
 
-Edite `src/config/site.ts` para alterar nome, slogan, WhatsApp, e-mail, LinkedIn e localidade. O WhatsApp deve conter apenas código do país, DDD e número, sem espaços ou símbolos.
+Cada case possui URL própria no formato `?project=slug`. Esse formato funciona em hospedagem estática sem redirecionamento. O título, a descrição e o canonical são atualizados no navegador. Para prévias sociais específicas por case, seria necessária geração de páginas HTML individuais durante o build.
 
-Os serviços ficam em `src/data/services.ts`. As soluções que podem ser desenvolvidas e as perguntas frequentes ficam em `src/data/content.ts`. O título, descrição, canonical e Open Graph ficam em `index.html`.
+As prévias dos projetos são composições ilustrativas em CSS, não capturas das aplicações reais. Tecnologias e resultados não divulgados foram mantidos fora dos cases.
 
-## Verificar e gerar o build
+## Verificação e publicação
 
 ```bash
 pnpm typecheck
 pnpm build
-pnpm preview
 ```
 
-O resultado será criado em `dist/`. Durante o GitHub Actions, o Vite identifica automaticamente o nome do repositório pela variável `GITHUB_REPOSITORY` e configura o `base` correto.
+O workflow `.github/workflows/deploy.yml` publica `dist/` no GitHub Pages após push na branch `main`. O `base` do Vite é definido pelo nome do repositório no GitHub Actions. Esta reformulação local não publica o projeto.
 
-## Publicar no GitHub Pages
+## Reversão
 
-1. Crie um repositório no GitHub e envie o projeto para a branch `main`.
-2. No repositório, abra **Settings → Pages**.
-3. Em **Build and deployment → Source**, escolha **GitHub Actions**.
-4. O workflow `.github/workflows/deploy.yml` fará typecheck, build e publicação a cada push na `main`.
-
-Não é preciso informar manualmente o nome do repositório. Se ele mudar, o próximo build usará o novo nome automaticamente.
-
-## Domínio próprio
-
-No futuro, informe o domínio em **Settings → Pages → Custom domain**, configure os registros DNS indicados pelo GitHub e atualize `canonical` e `og:url` no `index.html`. Para preservar o domínio em cada publicação, adicione também um arquivo `public/CNAME` contendo somente o domínio.
-
-## Licença
-
-Distribuído sob a licença MIT. Consulte `LICENSE`.
+As alterações permanecem no histórico do Git. Revise o diff antes de criar um commit; uma versão anterior pode ser restaurada pelo histórico do repositório.
