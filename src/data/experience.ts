@@ -2,15 +2,15 @@ import type { Localized } from './projects'
 
 export const experience: { title: Localized; detail: Localized }[] = [
   {
-    title: { pt: 'Assessor · atuação técnica em desenvolvimento', en: 'Advisor · technical software development work' },
-    detail: { pt: 'Cargo formal de Assessor, com participação técnica no desenvolvimento, implantação e evolução de uma aplicação institucional interna.', en: 'Formal title of Advisor, with technical contributions to the development, deployment and evolution of an internal institutional application.' },
+    title: { pt: 'Assessor · desenvolvimento de software', en: 'Advisor · software development' },
+    detail: { pt: 'Meu cargo formal é Assessor. Também participei tecnicamente do desenvolvimento, da implantação e da evolução de um sistema institucional interno.', en: 'My formal job title is Advisor. I also worked directly on the development, deployment and improvement of an internal institutional system.' },
   },
   {
     title: { pt: 'Projetos próprios de software', en: 'Independent software projects' },
-    detail: { pt: 'Criação e evolução do DnewDesk e do Fynes, com foco em arquitetura, interfaces, autenticação e operação.', en: 'Building and evolving DnewDesk and Fynes, with a focus on architecture, interfaces, authentication and operations.' },
+    detail: { pt: 'Desenvolvo o DnewDesk e o Fynes por conta própria. Cuido da arquitetura, das interfaces, da autenticação e da operação das aplicações.', en: 'I build DnewDesk and Fynes independently, working on their architecture, interfaces, authentication and operation.' },
   },
   {
     title: { pt: 'Automação, integração, cloud e segurança', en: 'Automation, integration, cloud and security' },
-    detail: { pt: 'Experiência com melhoria de processos, integração de sistemas, ambientes em nuvem e boas práticas de segurança da informação.', en: 'Experience improving processes, integrating systems, working with cloud environments and applying information security practices.' },
+    detail: { pt: 'Também trabalho com automação de tarefas, integração entre sistemas, ambientes em nuvem e práticas de segurança da informação.', en: 'I also work on task automation, system integrations, cloud environments and information security practices.' },
   },
 ]

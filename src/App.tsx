@@ -15,37 +15,37 @@ import { whatsappUrl } from './utils/whatsapp'
 const copy = {
   pt: {
     nav: ['Sobre', 'Experiência', 'Projetos', 'Especialidades', 'Serviços', 'Contato'],
-    kicker: 'ENGENHARIA DE SOFTWARE · SOLUÇÕES DIGITAIS',
-    hero: 'Construindo sistemas', heroAccent: 'que fazem sentido.',
-    intro: 'Sou Danrley, Software Engineer. Desenvolvimento, cloud, automação e segurança conectados a problemas reais de negócio.',
-    work: 'Explorar projetos', together: 'Vamos trabalhar juntos', scroll: 'ROLE PARA EXPLORAR',
-    about: 'Engenharia com contexto. Tecnologia com propósito.',
-    aboutBody: 'Atuo no desenvolvimento de software, automação, integração de sistemas, cloud computing e segurança da informação. Meu cargo formal é Assessor; minha atuação técnica inclui desenvolvimento, implantação e evolução de sistemas.',
-    aboutBody2: 'Em paralelo, crio projetos próprios e ajudo empresas e profissionais a transformar necessidades em sistemas, websites e operações digitais mais organizadas.',
-    experience: 'Experiência em diferentes frentes.', projects: 'Projetos próprios e uma entrega profissional relevante.',
-    expertise: 'Do código à operação.', services: 'Como posso ajudar sua empresa.',
-    contact: 'Tem um desafio em mente?', contactBody: 'Conte o contexto do seu projeto. Podemos conversar sobre escopo, possibilidades e próximos passos.',
-    quote: 'Solicitar orçamento', back: 'Voltar aos projetos', context: 'Contexto e desafio', approach: 'Arquitetura e implementação', outcome: 'Entrega e estado atual',
+    kicker: 'DESENVOLVIMENTO DE SOFTWARE · PORTFÓLIO',
+    hero: 'Desenvolvedor', heroAccent: 'de software.',
+    intro: 'Sou Danrley Sousa. Trabalho com PHP/Laravel, React, TypeScript e bancos de dados. Aqui apresento meus projetos pessoais e parte do meu trabalho em sistemas internos.',
+    work: 'Ver projetos', together: 'Entrar em contato', scroll: 'ROLE PARA EXPLORAR',
+    about: 'Sobre meu trabalho.',
+    aboutBody: 'Desenvolvo aplicações web, APIs e integrações. Trabalho com PHP/Laravel, React, TypeScript, Python, Ruby on Rails e bancos de dados. Também tenho experiência com cloud, automação e segurança da informação.',
+    aboutBody2: 'Meu cargo formal é Assessor. Nessa função, participei do desenvolvimento, da implantação e da evolução de um sistema interno. Fora do trabalho institucional, desenvolvo o DnewDesk e o Fynes por conta própria.',
+    experience: 'O que tenho feito.', projects: 'Projetos que desenvolvi.',
+    expertise: 'Tecnologias com que trabalho.', services: 'Serviços que ofereço.',
+    contact: 'Vamos conversar.', contactBody: 'Se quiser conversar sobre um projeto ou trabalho, me escreva por e-mail ou WhatsApp. Conte brevemente o que precisa.',
+    quote: 'Falar sobre um projeto', back: 'Voltar aos projetos', context: 'O que eu queria resolver', approach: 'Como desenvolvi', outcome: 'O que está pronto',
     evolving: 'Em evolução', privacy: 'Política de privacidade', theme: 'Alternar tema', language: 'Mudar idioma', menu: 'Abrir menu', view: 'Ver projeto',
-    personal: 'Projetos pessoais', professional: 'Experiência profissional / Case privado', technologies: 'Tecnologias', confidential: 'Detalhes técnicos não divulgados',
-    concept: 'Visual conceitual · não representa uma tela real', privateCase: 'Sistema interno privado. Sem acesso público ou repositório divulgado.',
+    personal: 'Projetos pessoais', professional: 'Trabalho institucional · case privado', technologies: 'Tecnologias', confidential: 'Detalhes técnicos não divulgados',
+    concept: 'Ilustração conceitual · não é uma tela do sistema', privateCase: 'Sistema interno privado, sem acesso público ou repositório divulgado.',
   },
   en: {
     nav: ['About', 'Experience', 'Work', 'Expertise', 'Services', 'Contact'],
-    kicker: 'SOFTWARE ENGINEERING · DIGITAL SOLUTIONS',
-    hero: 'Building systems', heroAccent: 'that make sense.',
-    intro: "I'm Danrley, a Software Engineer. Development, cloud, automation and security connected to real business problems.",
-    work: 'Explore my work', together: "Let's work together", scroll: 'SCROLL TO EXPLORE',
-    about: 'Engineering with context. Technology with purpose.',
-    aboutBody: 'I work in software development, automation, systems integration, cloud computing and information security. My formal title is Advisor; my technical work includes developing, deploying and evolving systems.',
-    aboutBody2: 'Alongside that work, I build independent projects and help businesses and professionals turn needs into systems, websites and more organized digital operations.',
-    experience: 'Experience across disciplines.', projects: 'Independent projects and a significant professional delivery.',
-    expertise: 'From code to operations.', services: 'How I can help your business.',
-    contact: 'Have a challenge in mind?', contactBody: 'Tell me about your project. We can discuss scope, possibilities and next steps.',
-    quote: 'Request a quote', back: 'Back to work', context: 'Context and challenge', approach: 'Architecture and implementation', outcome: 'Delivery and current status',
+    kicker: 'SOFTWARE DEVELOPMENT · PORTFOLIO',
+    hero: 'Software', heroAccent: 'developer.',
+    intro: "I'm Danrley Sousa. I work with PHP/Laravel, React, TypeScript and databases. Here I share my personal projects and some of my work on internal systems.",
+    work: 'View projects', together: 'Get in touch', scroll: 'SCROLL TO EXPLORE',
+    about: 'About my work.',
+    aboutBody: 'I build web applications, APIs and integrations. I work with PHP/Laravel, React, TypeScript, Python, Ruby on Rails and databases. I also have experience in cloud, automation and information security.',
+    aboutBody2: 'My formal job title is Advisor. In that role, I helped develop, deploy and improve an internal system. Outside that institutional work, I build DnewDesk and Fynes as personal projects.',
+    experience: "Work I've done.", projects: "Projects I've built.",
+    expertise: 'Technologies I work with.', services: 'Services I offer.',
+    contact: 'Get in touch.', contactBody: "If you'd like to discuss a project or a role, send me an email or WhatsApp message. A short description is enough to start.",
+    quote: 'Discuss a project', back: 'Back to projects', context: 'What I wanted to solve', approach: 'How I built it', outcome: "What's ready",
     evolving: 'In active development', privacy: 'Privacy policy', theme: 'Toggle theme', language: 'Change language', menu: 'Open menu', view: 'View project',
-    personal: 'Personal projects', professional: 'Professional experience / Private case study', technologies: 'Technologies', confidential: 'Technical details not disclosed',
-    concept: 'Conceptual visual · not an actual product screen', privateCase: 'Private internal system. No public access or repository is provided.',
+    personal: 'Personal projects', professional: 'Institutional work · private case study', technologies: 'Technologies', confidential: 'Technical details not disclosed',
+    concept: 'Concept illustration · not a real system screen', privateCase: 'Private internal system, with no public access or repository.',
   },
 }
 
@@ -91,7 +91,7 @@ function CasePage({ project, lang, closeProject }: { project: Project; lang: Lan
     <Visual project={project} lang={lang} />
     <div className="case-details"><div><span className="eyebrow">01 / {t.context}</span><p>{project.challenge[lang]}</p></div><div><span className="eyebrow">02 / {t.approach}</span><p>{project.approach[lang]}</p></div><div><span className="eyebrow">03 / {t.outcome}</span><p>{project.result[lang]}</p></div><div><span className="eyebrow">04 / {t.technologies}</span>{project.technologies.length ? <div className="tag-list">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div> : <p>{t.confidential}</p>}</div></div>
     <ul className="case-highlights">{project.highlights.map(item => <li key={item.pt}>{item[lang]}</li>)}</ul>
-    {project.kind === 'professional' ? <p className="technology-note">{t.privateCase}</p> : <a className="button primary" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{t.together}<ArrowUpRight size={18} /></a>}
+    {project.kind === 'professional' ? <p className="technology-note">{t.privateCase}</p> : <a className="button primary" href={whatsappUrl(undefined, lang)} target="_blank" rel="noopener noreferrer">{t.together}<ArrowUpRight size={18} /></a>}
   </div>
 }
 
@@ -108,7 +108,7 @@ export default function App() {
   useEffect(() => { const onPop = () => setSlug(new URLSearchParams(location.search).get('project')); window.addEventListener('popstate', onPop); return () => window.removeEventListener('popstate', onPop) }, [])
   useEffect(() => { if (slug && !project) { history.replaceState({}, '', import.meta.env.BASE_URL); setSlug(null) } }, [slug, project])
   useEffect(() => {
-    const title = project ? `${project.name} | Danrley Sousa` : 'Danrley Sousa | Software Engineer & Soluções Digitais'
+    const title = project ? `${project.name} | Danrley Sousa` : lang === 'pt' ? 'Danrley Sousa | Desenvolvedor de Software' : 'Danrley Sousa | Software Developer'
     const description = project ? project.summary[lang] : t.intro
     const canonical = `${location.origin}${import.meta.env.BASE_URL}${project ? `?project=${project.slug}` : ''}`
     document.title = title
@@ -130,9 +130,9 @@ export default function App() {
       <section className="section about-section" id="sobre"><div className="shell section-grid"><Reveal><span className="eyebrow">01 / {t.nav[0].toUpperCase()}</span></Reveal><Reveal><h2>{t.about}</h2><div className="about-columns"><p>{t.aboutBody}</p><p>{t.aboutBody2}</p></div></Reveal></div></section>
       <section className="section" id="experiencia"><div className="shell section-grid"><Reveal><span className="eyebrow">02 / {t.nav[1].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.experience}</h2></Reveal><div className="timeline">{experience.map((item, i) => <Reveal className="timeline-item" key={item.title.pt}><span>0{i + 1}</span><div><h3>{item.title[lang]}</h3><p>{item.detail[lang]}</p></div><ArrowUpRight size={19} /></Reveal>)}</div></div></div></section>
       <section className="section work-section" id="projetos"><div className="shell"><Reveal className="work-heading"><span className="eyebrow">03 / {t.nav[2].toUpperCase()}</span><h2>{t.projects}</h2></Reveal><div className="project-group"><h3>{t.personal}</h3><div className="project-grid">{projects.filter(item => item.kind === 'personal').map(item => <ProjectCard key={item.slug} project={item} lang={lang} openProject={openProject} />)}</div></div><div className="project-group professional-group"><h3>{t.professional}</h3><div className="project-grid professional-grid">{projects.filter(item => item.kind === 'professional').map(item => <ProjectCard key={item.slug} project={item} lang={lang} openProject={openProject} />)}</div></div></div></section>
-      <section className="section expertise-section" id="especialidades"><div className="shell section-grid"><Reveal><span className="eyebrow">04 / {t.nav[3].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.expertise}</h2></Reveal><div className="expertise-groups"><div><span className="eyebrow expertise-group-label">{lang === 'pt' ? 'Desenvolvimento' : 'Development'}</span><div className="expertise-grid expertise-grid--development">{developmentSkills.map((group, i) => <Reveal className="expertise-card" key={group.title.en}><span className="eyebrow">/ 0{i + 1}</span><h3>{group.title[lang]}</h3><SkillTags group={group} lang={lang} /></Reveal>)}</div></div><div><span className="eyebrow expertise-group-label">{lang === 'pt' ? 'Infraestrutura, processos e proteção' : 'Infrastructure, processes and protection'}</span><div className="expertise-grid expertise-grid--complementary">{complementarySkills.map((group, i) => <Reveal className="expertise-card" key={group.title.en}><span className="eyebrow">/ 0{i + 4}</span><h3>{group.title[lang]}</h3><SkillTags group={group} lang={lang} /></Reveal>)}</div></div></div></div></div></section>
-      <section className="section services-section" id="servicos"><div className="shell section-grid"><Reveal><span className="eyebrow">05 / {t.nav[4].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.services}</h2></Reveal><div className="services-list">{portfolioServices.map((service, i) => <Reveal className="service-row" key={service.title.en}><span>0{i + 1}</span><div><h3>{service.title[lang]}</h3><p>{service.detail[lang]}</p></div><a href={whatsappUrl(service.title[lang])} target="_blank" rel="noopener noreferrer" aria-label={`${t.quote}: ${service.title[lang]}`}><ArrowUpRight /></a></Reveal>)}</div></div></div></section>
-      <section className="contact-section" id="contato"><div className="shell"><Reveal><span className="eyebrow">06 / {t.nav[5].toUpperCase()}</span><h2>{t.contact}</h2><p>{t.contactBody}</p><a className="button contact-button" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{t.quote}<ArrowUpRight /></a></Reveal><div className="contact-links"><a href={`mailto:${siteConfig.email}`}><Mail size={17} /> Email</a><a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={siteConfig.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub</a></div></div></section>
+      <section className="section expertise-section" id="especialidades"><div className="shell section-grid"><Reveal><span className="eyebrow">04 / {t.nav[3].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.expertise}</h2></Reveal><div className="expertise-groups"><div><span className="eyebrow expertise-group-label">{lang === 'pt' ? 'Desenvolvimento' : 'Development'}</span><div className="expertise-grid expertise-grid--development">{developmentSkills.map((group, i) => <Reveal className="expertise-card" key={group.title.en}><span className="eyebrow">/ 0{i + 1}</span><h3>{group.title[lang]}</h3><SkillTags group={group} lang={lang} /></Reveal>)}</div></div><div><span className="eyebrow expertise-group-label">{lang === 'pt' ? 'Cloud, automação e segurança' : 'Cloud, automation and security'}</span><div className="expertise-grid expertise-grid--complementary">{complementarySkills.map((group, i) => <Reveal className="expertise-card" key={group.title.en}><span className="eyebrow">/ 0{i + 4}</span><h3>{group.title[lang]}</h3><SkillTags group={group} lang={lang} /></Reveal>)}</div></div></div></div></div></section>
+      <section className="section services-section" id="servicos"><div className="shell section-grid"><Reveal><span className="eyebrow">05 / {t.nav[4].toUpperCase()}</span></Reveal><div><Reveal><h2>{t.services}</h2></Reveal><div className="services-list">{portfolioServices.map((service, i) => <Reveal className="service-row" key={service.title.en}><span>0{i + 1}</span><div><h3>{service.title[lang]}</h3><p>{service.detail[lang]}</p></div><a href={whatsappUrl(service.title[lang], lang)} target="_blank" rel="noopener noreferrer" aria-label={`${t.quote}: ${service.title[lang]}`}><ArrowUpRight /></a></Reveal>)}</div></div></div></section>
+      <section className="contact-section" id="contato"><div className="shell"><Reveal><span className="eyebrow">06 / {t.nav[5].toUpperCase()}</span><h2>{t.contact}</h2><p>{t.contactBody}</p><a className="button contact-button" href={whatsappUrl(undefined, lang)} target="_blank" rel="noopener noreferrer">{t.quote}<ArrowUpRight /></a></Reveal><div className="contact-links"><a href={`mailto:${siteConfig.email}`}><Mail size={17} /> Email</a><a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={siteConfig.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub</a></div></div></section>
     </>}</main>
     <footer className="site-footer"><div className="shell footer-inner"><span>© {new Date().getFullYear()} Danrley Sousa</span><span>Software Engineer / Brasil</span><a href={`${import.meta.env.BASE_URL}privacidade.html`}>{t.privacy}</a></div></footer>
   </>
