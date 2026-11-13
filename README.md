@@ -11,14 +11,14 @@ pnpm dev
 
 ## Conteúdo
 
-- `src/data/projects.ts`: cases, estado de desenvolvimento e métricas informadas.
-- `src/data/experience.ts`: trajetória profissional sem datas ou empregadores não verificados.
+- `src/data/projects.ts`: os dois projetos pessoais e o case profissional privado, com textos em português e inglês.
+- `src/data/experience.ts`: cargo formal e atuação técnica apresentados separadamente.
 - `src/data/portfolioServices.ts`: serviços.
 - `src/config/site.ts`: WhatsApp, e-mail e perfis públicos.
 
 Cada case possui URL própria no formato `?project=slug`. Esse formato funciona em hospedagem estática sem redirecionamento. O título, a descrição e o canonical são atualizados no navegador. Para prévias sociais específicas por case, seria necessária geração de páginas HTML individuais durante o build.
 
-As prévias dos projetos são composições ilustrativas em CSS, não capturas das aplicações reais. Tecnologias e resultados não divulgados foram mantidos fora dos cases.
+As prévias dos projetos são composições conceituais em CSS, identificadas como tal na interface. O case institucional não divulga órgão, métricas, tecnologia, acesso interno ou repositório privado.
 
 ## Verificação e publicação
 
