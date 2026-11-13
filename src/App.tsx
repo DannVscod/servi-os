@@ -16,7 +16,7 @@ const copy = {
   pt: {
     nav: ['Sobre', 'Experiência', 'Projetos', 'Especialidades', 'Serviços', 'Contato'],
     kicker: 'DESENVOLVIMENTO DE SOFTWARE · PORTFÓLIO',
-    hero: 'Desenvolvedor', heroAccent: 'de software.',
+    hero: 'Engenheiro', heroAccent: 'de software.',
     intro: 'Sou Danrley Sousa. Trabalho com PHP/Laravel, React, TypeScript e bancos de dados. Aqui apresento meus projetos pessoais e parte do meu trabalho em sistemas internos.',
     work: 'Ver projetos', together: 'Entrar em contato', scroll: 'ROLE PARA EXPLORAR',
     about: 'Sobre meu trabalho.',
@@ -108,7 +108,7 @@ export default function App() {
   useEffect(() => { const onPop = () => setSlug(new URLSearchParams(location.search).get('project')); window.addEventListener('popstate', onPop); return () => window.removeEventListener('popstate', onPop) }, [])
   useEffect(() => { if (slug && !project) { history.replaceState({}, '', import.meta.env.BASE_URL); setSlug(null) } }, [slug, project])
   useEffect(() => {
-    const title = project ? `${project.name} | Danrley Sousa` : lang === 'pt' ? 'Danrley Sousa | Desenvolvedor de Software' : 'Danrley Sousa | Software Developer'
+    const title = project ? `${project.name} | Danrley Sousa` : lang === 'pt' ? 'Danrley Sousa | Engenheiro de Software' : 'Danrley Sousa | Software Engineer'
     const description = project ? project.summary[lang] : t.intro
     const canonical = `${location.origin}${import.meta.env.BASE_URL}${project ? `?project=${project.slug}` : ''}`
     document.title = title
