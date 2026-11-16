@@ -64,16 +64,54 @@ function Reveal({ children, className = '' }: { children: React.ReactNode; class
 }
 
 function Visual({ project, lang }: { project: Project; lang: Lang }) {
+  const isFynes = project.visual === 'fynes'
+  const isHelpDesk = project.visual === 'dnew'
+  const isPdfTools = project.visual === 'pdf'
   return <div className={`visual visual-${project.visual}`} aria-label={copy[lang].concept} role="img">
     <div className="visual-grid" />
-    <div className="visual-window" aria-hidden="true">
-      <div className="window-top"><i /><i /><i /><b>{project.name}</b></div>
-      <div className="window-body"><div className="mock-sidebar"><i /><i /><i /><i /></div><div className="mock-main"><div className="mock-heading" /><div className="mock-stats"><i /><i /><i /></div><div className="mock-lines"><i /><i /><i /><i /></div></div></div>
+    <div className={`visual-window ${isFynes || isHelpDesk || isPdfTools ? 'visual-window--showcase' : ''}`} aria-hidden="true">
+      <div className="window-top">
+        <i /><i /><i />
+        <b>{project.name}</b>
+        {isFynes && <small>FINANÇAS</small>}
+        {isHelpDesk && <small>WORKSPACE</small>}
+        {isPdfTools && <small>ARQUIVOS</small>}
+      </div>
+      {isFynes ? <div className="showcase-body showcase-fynes">
+        <div className="showcase-top"><span>Fynes</span><i /><i /><i /></div>
+        <div className="showcase-layout">
+          <aside className="showcase-nav"><i /><i /><i /><i /><i /></aside>
+          <div className="showcase-main">
+            <small>FINANCIAL WORKSPACE</small>
+            <h4>Seu dinheiro, em perspectiva.</h4>
+            <div className="showcase-metrics"><div><small>SALDO</small><strong>R$ —</strong></div><div><small>METAS</small><strong>— %</strong></div></div>
+            <div className="showcase-visual-chart"><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
+            <div className="showcase-tags"><span>Movimentações</span><span>Metas</span><span>IA</span></div>
+          </div>
+        </div>
+      </div> : isHelpDesk ? <div className="showcase-body showcase-helpdesk">
+        <div className="showcase-top"><span>DnewDesk</span><span>ATENDIMENTO</span></div>
+        <div className="showcase-layout">
+          <aside className="showcase-nav"><i /><i /><i /><i /><i /></aside>
+          <div className="showcase-main">
+            <small>ORGANIZAÇÃO & SUPORTE</small>
+            <h4>Um espaço para atender melhor.</h4>
+            <div className="showcase-metrics"><div><small>CHAMADOS</small><strong>—</strong></div><div><small>EQUIPES</small><strong>—</strong></div></div>
+            <div className="showcase-tickets"><div><i /><span /><b /></div><div><i /><span /><b /></div><div><i /><span /><b /></div></div>
+          </div>
+        </div>
+      </div> : isPdfTools ? <div className="showcase-body showcase-pdf">
+        <div className="showcase-top"><span>DnewAI</span><span>FILE WORKSPACE</span></div>
+        <div className="showcase-main">
+          <small>PROCESSAMENTO DE ARQUIVOS</small><h4>Arquivos, sem complicação.</h4>
+          <div className="showcase-file"><div className="showcase-file-icon">PDF</div><div><strong>Seu documento</strong><span>Prévia de processamento</span></div><i /></div>
+          <div className="showcase-tools"><span>Enviar</span><span>Processar</span><span>Baixar</span></div>
+        </div>
+      </div> : <div className="window-body"><div className="mock-sidebar"><i /><i /><i /><i /></div><div className="mock-main"><div className="mock-heading" /><div className="mock-stats"><i /><i /><i /></div><div className="mock-lines"><i /><i /><i /><i /></div></div></div>}
     </div>
     <span className="visual-stamp">{copy[lang].concept}</span>
   </div>
 }
-
 function ProjectCard({ project, lang, openProject }: { project: Project; lang: Lang; openProject: (slug: string) => void }) {
   const t = copy[lang]
   return <Reveal className="project-card">
