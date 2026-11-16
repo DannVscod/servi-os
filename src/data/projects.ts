@@ -46,6 +46,20 @@ export const projects: Project[] = [
     technologies: ['React', 'TypeScript', 'Cloudflare Workers', 'D1', 'PWA'],
   },
   {
+    slug: 'dnewai', name: 'DnewAI', kind: 'personal', visual: 'pdf', status: 'evolving',
+    category: {pt:'Projeto pessoal · Ferramentas de arquivos',en:'Personal project · File tools'},
+    summary: {pt:'Plataforma em desenvolvimento para trabalhar com arquivos em um único espaço, começando por envios e processamentos autenticados.',en:'An evolving platform for working with files in one place, starting with authenticated uploads and processing.'},
+    challenge: {pt:'Reunir operações comuns de arquivos em uma experiência simples, com processamento separado e controle de acesso.',en:'Bring common file operations into a straightforward experience with isolated processing and access control.'},
+    approach: {pt:'A base usa Ruby on Rails, React, TypeScript, PostgreSQL e jobs com Sidekiq. Já existe um fluxo inicial de envio, processamento de teste e download autorizado; as ferramentas completas de PDF ainda estão em desenvolvimento.',en:'The foundation uses Ruby on Rails, React, TypeScript, PostgreSQL and Sidekiq jobs. An initial upload, test-processing and authorized-download flow exists; the complete PDF tools are still being built.'},
+    result: {pt:'O projeto possui autenticação, processamento em segundo plano e controles de acesso iniciais. Conversão, compressão e demais ferramentas ainda não são anunciadas como concluídas.',en:'The project has authentication, background processing and initial access controls. Conversion, compression and other tools are not yet presented as complete.'},
+    highlights:[
+      {pt:'Upload e download com autenticação',en:'Authenticated file uploads and downloads'},
+      {pt:'Processamento assíncrono inicial',en:'Initial asynchronous processing'},
+      {pt:'Ferramentas PDF em evolução',en:'PDF tools in development'}
+    ],
+    technologies:['Ruby on Rails','React','TypeScript','PostgreSQL','Sidekiq']
+  },
+  {
     slug: 'prestacao-de-contas', name: 'Sistema de Prestação de Contas', kind: 'professional', visual: 'banca',
     category: { pt: 'Experiência profissional · Case institucional privado', en: 'Professional experience · Private institutional case study' },
     summary: { pt: 'Sistema interno de prestação de contas em que trabalhei profissionalmente. Não publico telas ou dados da instituição.', en: 'An internal reporting system I worked on professionally. I do not publish screenshots or institutional data.' },
