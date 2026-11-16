@@ -56,3 +56,26 @@ p { line-height: 1.68; }
   .skill-tags li { transition: none; }
   .skill-tags li:hover { transform: none; }
 }
+
+/* A quiet perspective corridor follows the visitor through the portfolio. */
+.scroll-atmosphere { position: fixed; inset: 0; z-index: 4; overflow: hidden; pointer-events: none; perspective: 1100px; transform-style: preserve-3d; opacity: .48; }
+.scroll-atmosphere__grid { position: absolute; inset: -30%; background-image: radial-gradient(#b4ed7850 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse at center, #000 5%, transparent 65%); transform: rotate(-8deg) scale(1.25); }
+.scroll-atmosphere__ring { position: absolute; left: 50%; top: 50%; border: 1px solid #b4ed7830; border-radius: 50%; transform: translate(-50%, -50%) rotateX(60deg); }
+.scroll-atmosphere__ring--outer { width: min(75vw, 900px); aspect-ratio: 1; }
+.scroll-atmosphere__ring--inner { width: min(44vw, 540px); aspect-ratio: 1; border-style: dashed; }
+.scroll-atmosphere__plane { position: absolute; width: clamp(105px, 11vw, 170px); aspect-ratio: 4 / 5; border: 1px solid #b4ed7870; border-radius: 12px; background: linear-gradient(145deg, #b4ed781a, #15271aa8 65%); box-shadow: 0 18px 55px #0006, inset 0 1px #ffffff25; backdrop-filter: blur(7px); padding: 16px; display: flex; flex-direction: column; gap: 9px; color: #d6f8c6; font: 10px 'Geist Mono', monospace; letter-spacing: .08em; }
+.scroll-atmosphere__plane i { display: block; width: 70%; height: 2px; background: #b4ed7860; margin-top: 7px; }
+.scroll-atmosphere__plane i:last-child { width: 43%; }
+.scroll-atmosphere__progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: #b4ed78; transform-origin: left; }
+.site-header { z-index: 20; }
+.hero, .section, .contact-section, .site-footer { isolation: isolate; }
+.section::before, .contact-section::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 50% 40%, #b4ed7809, transparent 55%); }
+.section, .contact-section { position: relative; }
+.project-card { perspective: 1000px; }
+.project-card .visual { transition: transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s ease; transform-style: preserve-3d; }
+.project-card:hover .visual, .project-card:focus-within .visual { transform: rotateX(2deg) rotateY(-3deg) translateY(-7px); box-shadow: 0 30px 70px #0003; }
+:root[data-theme='light'] .scroll-atmosphere { opacity: .3; }
+:root[data-theme='light'] .scroll-atmosphere__plane { background: linear-gradient(145deg, #e1f6d5b8, #a9c69b88); color: #254428; border-color: #315d3180; }
+:root[data-theme='light'] .scroll-atmosphere__plane i { background: #315d3180; }
+@media (max-width: 700px) { .scroll-atmosphere { opacity: .25; } .scroll-atmosphere__plane { width: 100px; padding: 10px; font-size: 8px; } .scroll-atmosphere__ring--outer { width: 95vw; } }
+@media (prefers-reduced-motion: reduce) { .project-card .visual { transition: none; } .project-card:hover .visual, .project-card:focus-within .visual { transform: none; } }

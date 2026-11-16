@@ -9,6 +9,7 @@ import { experience } from './data/experience'
 import { portfolioServices } from './data/portfolioServices'
 import { complementarySkills, developmentSkills, type SkillGroup } from './data/skills'
 import { HeroOrbit } from './components/HeroOrbit'
+import { ScrollAtmosphere } from './components/ScrollAtmosphere'
 import { siteConfig } from './config/site'
 import { whatsappUrl } from './utils/whatsapp'
 
@@ -17,11 +18,11 @@ const copy = {
     nav: ['Sobre', 'Experiência', 'Projetos', 'Especialidades', 'Serviços', 'Contato'],
     kicker: 'DESENVOLVIMENTO DE SOFTWARE · PORTFÓLIO',
     hero: 'Engenheiro', heroAccent: 'de software.',
-    intro: 'Sou Danrley Araújo. Tabalho como engenheiro de software e também atuo em areas como cibersegurança. Aqui apresento meus projetos pessoais e parte do meu trabalho em sistemas internos.',
+    intro: 'Sou Danrley Sousa, engenheiro de software. Desenvolvo aplicações, integrações e soluções com atenção à segurança. Aqui apresento projetos pessoais e parte da minha experiência com sistemas internos.',
     work: 'Ver projetos', together: 'Entrar em contato', scroll: 'ROLE PARA EXPLORAR',
     about: 'Sobre meu trabalho.',
     aboutBody: 'Desenvolvo aplicações web, APIs e integrações. Trabalho com PHP/Laravel, React, TypeScript, Python, Ruby on Rails e bancos de dados. Também tenho experiência com cloud, automação e segurança da informação.',
-    aboutBody2: 'Meu cargo formal é Assessor atuando na parte de tecnologia do estado. Nessa função, participei do desenvolvimento, da implantação e da evolução de um sistema interno. Fora do trabalho institucional, desenvolvo o DnewDesk e o Fynes por conta própria.',
+    aboutBody2: 'Atuo como assessor na área de tecnologia do setor público. Nessa função, participei do desenvolvimento, da implantação e da evolução de um sistema interno. Também desenvolvo o DnewDesk e o Fynes como projetos pessoais.',
     experience: 'O que tenho feito.', projects: 'Projetos que desenvolvi.',
     expertise: 'Tecnologias com que trabalho.', services: 'Serviços que ofereço.',
     contact: 'Vamos conversar.', contactBody: 'Se quiser conversar sobre um projeto ou trabalho, me escreva por e-mail ou WhatsApp. Conte brevemente o que precisa.',
@@ -34,11 +35,11 @@ const copy = {
     nav: ['About', 'Experience', 'Work', 'Expertise', 'Services', 'Contact'],
     kicker: 'SOFTWARE DEVELOPMENT · PORTFOLIO',
     hero: 'Software', heroAccent: 'engineer.',
-    intro: "I'm Danrley Araújo. I work as a software engineer and also work in areas like cybersecurity. Here I share my personal projects and some of my work on internal systems.",
+    intro: "I'm Danrley Sousa, a software engineer. I build applications, integrations and solutions with security in mind. Here I share personal projects and part of my experience with internal systems.",
     work: 'View projects', together: 'Get in touch', scroll: 'SCROLL TO EXPLORE',
     about: 'About my work.',
     aboutBody: 'I build web applications, APIs and integrations. I work with PHP/Laravel, React, TypeScript, Python, Ruby on Rails and databases. I also have experience in cloud, automation and information security.',
-    aboutBody2: 'My formal job title is Advisor. In that role, I helped develop, deploy and improve an internal system. Outside that institutional work, I build DnewDesk and Fynes as personal projects.',
+    aboutBody2: 'I work as a technology advisor in the public sector. In that role, I helped develop, deploy and improve an internal system. I also build DnewDesk and Fynes as personal projects.',
     experience: "Work I've done.", projects: "Projects I've built.",
     expertise: 'Technologies I work with.', services: 'Services I offer.',
     contact: 'Get in touch.', contactBody: "If you'd like to discuss a project or a role, send me an email or WhatsApp message. A short description is enough to start.",
@@ -119,6 +120,7 @@ export default function App() {
   const closeProject = () => { history.pushState({}, '', `${import.meta.env.BASE_URL}#projetos`); setSlug(null); requestAnimationFrame(() => document.getElementById('projetos')?.scrollIntoView()) }
 
   return <>
+    {!project && <ScrollAtmosphere />}
     <a className="skip-link" href="#main">{lang === 'pt' ? 'Ir para o conteúdo' : 'Skip to content'}</a>
     <header className="site-header"><div className="shell header-inner">
       <a className="wordmark" href={import.meta.env.BASE_URL} aria-label="Danrley Sousa"><strong>d<span>.</span></strong><span>DANRLEY<br />SOUSA</span></a>
