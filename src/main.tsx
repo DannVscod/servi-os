@@ -4,5 +4,6 @@ import App from './App'
 import './styles/fonts.css'
 import './styles/global.css'
 import './styles/refinements.css'
+import './styles/glass.css'
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
